@@ -50,3 +50,53 @@ let playRound = (playerSelection, computerSelection) =>{
         }
     }
 }
+
+let game = () =>{
+
+    let playerScore = 0;
+    let computerScore = 0;
+    let highestScore = 0;
+
+    for (highestScore; highestScore < 5;)
+    {
+        result = playRound(playerSelection(), getComputerChoice());
+
+        if (result != 'Draw!'){
+            if (result[4] == 'W'){
+                console.log(result);
+                playerScore++;
+            }
+            else{
+                console.log(result);
+                computerScore++;
+            }
+        }
+        else{
+            console.log(result);
+        }
+
+        if (playerScore > computerScore){
+            highestScore = playerScore
+        }
+        else if (computerScore > playerScore){
+            highestScore = computerScore
+        }
+    }
+    console.log("=-=-=-=-=-=-=-=-=-=")
+    console.log('Player Score: ' + playerScore)
+    console.log('Computer Score: ' + computerScore)
+
+    if (playerScore > computerScore){
+        console.log("=-=-=-=-=-=-=-=-=-=")
+        return "-> Player Wins! <-"
+    }
+    else if (computerScore > playerScore){
+        console.log("=-=-=-=-=-=-=-=-=-=")
+        return "-> Computer Wins! <-"
+    }
+    else{
+        console.log("=-=-=-=-=-=-=-=-=-=")
+        return "-> Draw! <-"
+    }
+}
+console.log(game())
