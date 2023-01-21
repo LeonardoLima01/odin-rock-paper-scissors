@@ -5,14 +5,14 @@ let getComputerChoice = () =>{
     return options[choice];
 }
 
-let playerSelection = () => {
-    let answer = 'a';
-
-    while (answer != 'rock' && answer != 'paper' && answer != 'scissors'){
-        answer = prompt("Rock, Paper or Scissors?").toLowerCase()
-    }
-    return answer;
-}
+//let playerSelection = () => {
+//    let answer = 'a';
+//
+//    while (answer != 'rock' && answer != 'paper' && answer != 'scissors'){
+//        answer = prompt("Rock, Paper or Scissors?").toLowerCase()
+//    }
+//    return answer;
+//}
 
 let playRound = (playerSelection, computerSelection) =>{
     
@@ -51,52 +51,61 @@ let playRound = (playerSelection, computerSelection) =>{
     }
 }
 
-let game = () =>{
+const rock = document.querySelector('#rock')
+const paper = document.querySelector('#paper')
+const scissors = document.querySelector('#scissors')
+div = document.querySelector('#result')
+const player_score_display = document.querySelector('#player_score')
+const computer_score_display = document.querySelector('#computer_score')
+player_score_display.textContent = 0;
+computer_score_display.textContent = 0;
+let playerScore = 0;
+let computerScore = 0;
 
-    let playerScore = 0;
-    let computerScore = 0;
-    let highestScore = 0;
+function removeTransition(a){
+    a.classList.remove('clicked')
+}
 
-    for (highestScore; highestScore < 5;)
-    {
-        result = playRound(playerSelection(), getComputerChoice());
+const simulateGame = (playerSelection, computerSelection) =>{
 
-        if (result != 'Draw!'){
-            if (result[4] == 'W'){
-                console.log(result);
-                playerScore++;
-            }
-            else{
-                console.log(result);
-                computerScore++;
-            }
+    div.textContent = (playRound(playerSelection, computerSelection))
+
+    pc_answer = document.querySelector('#pc_'+computerSelection+'')
+    pc_answer.classList.add('clicked')
+    pc_answer.addEventListener('transitionend', () => pc_answer.classList.remove('clicked'))  
+
+    result = div.textContent;
+    if (result != 'Draw!'){
+        if (result[4] == 'W'){
+            playerScore++;
+            player_score_display.textContent = playerScore;
         }
         else{
-            console.log(result);
+            computerScore++;
+            computer_score_display.textContent = computerScore;
         }
+    }
 
-        if (playerScore > computerScore){
-            highestScore = playerScore
-        }
-        else if (computerScore > playerScore){
-            highestScore = computerScore
-        }
+    if (playerScore === 5){
+        setTimeout(() => {
+            playerScore = 0;
+            computerScore = 0;
+            player_score_display.textContent = playerScore;
+            computer_score_display.textContent = computerScore;
+            alert('Player Wins!')
+    }, 5)
     }
-    console.log("=-=-=-=-=-=-=-=-=-=")
-    console.log('Player Score: ' + playerScore)
-    console.log('Computer Score: ' + computerScore)
-
-    if (playerScore > computerScore){
-        console.log("=-=-=-=-=-=-=-=-=-=")
-        return "-> Player Wins! <-"
-    }
-    else if (computerScore > playerScore){
-        console.log("=-=-=-=-=-=-=-=-=-=")
-        return "-> Computer Wins! <-"
-    }
-    else{
-        console.log("=-=-=-=-=-=-=-=-=-=")
-        return "-> Draw! <-"
+    else if (computerScore === 5){
+        setTimeout(() => {
+            playerScore = 0;
+            computerScore = 0;
+            player_score_display.textContent = playerScore;
+            computer_score_display.textContent = computerScore;
+            alert('Computer Wins!')
+    }, 5)
     }
 }
-console.log(game())
+
+rock.addEventListener('click', () => simulateGame('rock', getComputerChoice()));
+paper.addEventListener('click', () => simulateGame('paper', getComputerChoice()));
+scissors.addEventListener('click', () => simulateGame('scissors', getComputerChoice()));

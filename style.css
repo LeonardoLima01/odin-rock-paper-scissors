@@ -1,0 +1,107 @@
+body,
+html{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#container{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#scores{
+    display: flex;
+    gap: 75px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid red;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 80px;
+}
+
+#player_score,
+#computer_score{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btns{
+    display: flex;
+    gap: 50px;
+    margin: 21px;
+}
+
+#rock,
+#pc_rock{
+    background-image: url(images/rock.png);
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: center;
+    padding: 75px;
+}
+
+#paper,
+#pc_paper{
+    background-image: url(images/paper.png);
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: center;
+    padding: 75px;
+}
+
+#scissors,
+#pc_scissors{
+    background-image: url(images/scissors.png);
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+    padding: 75px;
+}
+
+button{
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+#rock:hover,
+#paper:hover,
+#scissors:hover{
+    transition: background-color 0.7s ease;
+    background-color: rgb(219, 89, 89);
+}
+
+#rock:active,
+#paper:active,
+#scissors:active{
+    transform: scale(0.92);
+}
+
+#rock,
+#paper,
+#scissors{
+    background-color: white;
+}
+
+.clicked{
+    background-color: rgb(82, 82, 231);
+    transition: background-color 0.5s;
+}
+
+#computer_score,
+#player_score{
+    font-size: 22px;
+}
+
+#player_container,
+#computer_container{
+    font-size: 24px;
+}
